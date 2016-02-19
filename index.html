@@ -9,6 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' href="css/app.css" media="screen" title="no title" charset="utf-8">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,52 +39,60 @@
       </div>
     </nav>
 
-      <div  class='jumbotron'>
-        <form ng-submit='addPost()' name='postForm' ng-show='formDisplay'>
-          <div class='form-wrap'>
-            <label for="">Title</label>
-            <input type="text" name="title" ng-model='post.title'>
-          </div>
-          <div class='form-wrap'>
-            <label for="">Author</label>
-            <input type="text" name="author" value="" ng-model='post.author'>
-          </div>
-          <div class="form-wrap">
-            <label for="">Date</label>
-            <input type="time" name="date" value="" ng-model='post.date'>
-          </div>
-          <div class="form-wrap">
-            <label for="">Description</label>
-            <textarea name="description" rows="8" cols="40" ng-model='post.description'></textarea>
-          </div>
-          <button type="submit" name="button">Post</button>
-        </form>
-      </div>
-      <div class="row">
-    <div class='container'>
-
-        <div class="col-md-3">
-          <div class="post preview">
-            <h2>{{post.title}}</h2>
-            <p>
-              {{post.author}}
-            </p>
-            <p>
-              {{post.date}}
-            </p>
-            <p>
-              {{post.popularity}}
-            </p>
-            <p>
-              {{post.description}}
-            </p>
-          </div>
-          <div class="post" ng-repeat='post in posts'>
-            <h2>{{post.title}}</h2>
-            <p>
-              {{post.body}}
-            </p>
-          </div>
+    <div class='jumbotron'>
+      <form ng-submit='addPost()' name='postForm' ng-show='formDisplay'>
+        <div class='form-wrap'>
+          <label for="">Title</label>
+          <input type="text" name="title" ng-model='post.title'>
+        </div>
+        <div class='form-wrap'>
+          <label for="">Author</label>
+          <input type="text" name="author" value="" ng-model='post.author'>
+        </div>
+        <div class="form-wrap">
+          <label for="">Date</label>
+          <input type="date" name="date" value="" ng-model='post.date'>
+        </div>
+        <div class="form-wrap">
+          <label for="">Image Link</label>
+          <input type="url" name="image" ng-model='post.image' value="">
+        </div>
+        <div class="form-wrap">
+          <label for="">Description</label>
+          <textarea name="description" rows="8" cols="40" ng-model='post.description'></textarea>
+        </div>
+        <button type="submit" name="button">Post</button>
+      </form>
+    </div>
+    <div class="row">
+      <div class='container'>
+        <div class="post preview col-md-4">
+          <h2>{{post.title}}</h2>
+          <p>
+            {{post.author}}
+          </p>
+          <p>
+            {{post.date}}
+          </p>
+          <p>
+            {{post.description}}
+          </p>
+        </div>
+        <div class="post col-md-4" ng-repeat='post in posts'>
+          <h2>{{post.title}}</h2>
+          <p>
+            {{post.author}}
+          </p>
+          <p>
+            {{post.date}}
+          </p>
+          <img src="{{post.image}}" alt="" />
+          <p ng-class=colorClass(post.popularity)>
+            {{post.popularity}}
+          </p>
+          <p>
+            {{post.description}}
+          </p>
         </div>
       </div>
     </div>

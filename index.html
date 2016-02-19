@@ -40,26 +40,26 @@
     </nav>
 
     <div class='jumbotron'>
-      <form ng-submit='addPost()' name='postForm' ng-show='formDisplay'>
+      <form ng-submit='postForm.$valid && addPost()' name='postForm' ng-show='formDisplay' novalidate>
         <div class='form-wrap'>
           <label for="">Title</label>
-          <input type="text" name="title" ng-model='post.title'>
+          <input type="text" name="title" ng-model='post.title' required>
         </div>
         <div class='form-wrap'>
           <label for="">Author</label>
-          <input type="text" name="author" value="" ng-model='post.author'>
+          <input type="text" name="author" value="" ng-model='post.author' required>
         </div>
         <div class="form-wrap">
           <label for="">Date</label>
-          <input type="date" name="date" value="" ng-model='post.date'>
+          <input type="date" name="date" value="" ng-model='post.date' required>
         </div>
         <div class="form-wrap">
           <label for="">Image Link</label>
-          <input type="url" name="image" ng-model='post.image' value="">
+          <input type="url" name="image" ng-model='post.image' value="" required>
         </div>
         <div class="form-wrap">
           <label for="">Description</label>
-          <textarea name="description" rows="8" cols="40" ng-model='post.description'></textarea>
+          <textarea name="description" rows="8" cols="40" ng-model='post.description' required></textarea>
         </div>
         <button type="submit" name="button">Post</button>
       </form>

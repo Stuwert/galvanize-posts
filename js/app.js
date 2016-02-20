@@ -20,9 +20,13 @@ app.controller('RedditController', function($scope){
     description: "This is too cool to be real",
     image: 'http://media.mydogspace.com.s3.amazonaws.com/wp-content/uploads/2013/08/puppy-500x350.jpg'
   }];
+
+  $scope.comment = {};
+
   $scope.addPost= function(){
     $scope.post.popularity = 0;
     $scope.post.showComment = false;
+    $scope.post.showAddComment = false;
     $scope.post.comments = [];
     $scope.posts.push($scope.post);
     $scope.post = {};
@@ -38,7 +42,25 @@ app.controller('RedditController', function($scope){
     }
   }
 
+  $scope.toggleAddComment = function(index){
+    if ($scope.posts[index].showAddComment === true){
+      $scope.posts[index].showAddComment = false;
+    }else {
+      $scope.posts.forEach(function(post){
+        post.showAddComment = false;
+      })
+      $scope.posts[index].showAddComment = true;
+    }
+  }
+
   $scope.toggleComment = function(index){
     $scope.posts[index].showComment = $scope.posts[index].showComment === false ? true : false;
+  }
+
+  $scope.createComment = function(index){
+    $scope.posts[index].comments.push($scope.comment);
+    $scope.comment = {};
+    $scope.toggleComment(index);
+    $scope.toggleAddComment(index);
   }
 })

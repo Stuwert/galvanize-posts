@@ -17,4 +17,20 @@ img{
 
 .ng-invalid.ng-dirty{
   border-color: red;
+  border-width: 2px;
+}
+
+form{
+  width: 75%;
+  margin-left: 12.5%;
+}
+
+.form-control, label{
+  margin-top: 10px;
+  width: 50%;
+  float: left;
+}
+
+.row{
+  background-color: grey;
 }

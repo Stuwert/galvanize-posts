@@ -80,7 +80,7 @@
           {{post.author}}
         </p>
         <p>
-          {{post.date}}
+          {{post.date | date: 'shortDate'}}
         </p>
         <p>
           {{post.description}}
@@ -96,7 +96,7 @@
                 {{post.author}}
               </p>
               <p>
-                {{post.date}}
+                {{post.date | date: 'shortDate'}}
               </p>
               <p>
                 {{post.description}}

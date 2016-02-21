@@ -6,6 +6,7 @@ app.controller('RedditController', function($scope){
     $scope.formDisplay = $scope.formDisplay === true ? false : true;
   }
   $scope.post = {};
+  $scope.searchVal;
   $scope.posts = [{
     popularity: 0,
     showComment: false,
@@ -20,6 +21,15 @@ app.controller('RedditController', function($scope){
     description: "This is too cool to be real",
     image: 'http://media.mydogspace.com.s3.amazonaws.com/wp-content/uploads/2013/08/puppy-500x350.jpg'
   }];
+
+  $scope.containsValue = function(){
+    for(var information in $scope.post){
+      if($scope.post[information]){
+        return true;
+      }
+    }
+    return false;
+  }
 
   $scope.comment = {};
 
@@ -46,6 +56,7 @@ app.controller('RedditController', function($scope){
     if ($scope.posts[index].showAddComment === true){
       $scope.posts[index].showAddComment = false;
     }else {
+      console.log("This is hitting");
       $scope.posts.forEach(function(post){
         post.showAddComment = false;
       })

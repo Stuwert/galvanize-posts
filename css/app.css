@@ -31,6 +31,37 @@ form{
   float: left;
 }
 
-.row{
-  background-color: grey;
+.post{
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.preview{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.post img{
+  width: 30%;
+  margin: 0;
+  height: 30%;
+}
+
+.everythingelse{
+  position: relative;
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.popularity{
+  position: absolute;
+  right: 0;
+  top: 0;
 }

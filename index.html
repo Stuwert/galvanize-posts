@@ -40,6 +40,9 @@
             <li>
               <a> Filter</a>
             </li>
+            <li>
+              <input type="text" ng-model="searchVal" placeholder="Search For Content" name="name" class="form-control">
+            </li>
           </ul>
         </div>
       </div>
@@ -70,38 +73,43 @@
         <button type="submit" name="button" class='btn btn-default'>Post</button>
       </form>
     </div>
-      <div class='container'>
-        <div class="post preview">
-          <div class="row">
-            <div class="col-md-8">
-              {{post.title}}
-            </div>
-            <div class="cold-md-2">
+    <div class='container'>
+      <div class="post well preview" ng-show="containsValue()">
+        <h2>{{post.title}}</h2>
+        <p>
+          {{post.author}}
+        </p>
+        <p>
+          {{post.date}}
+        </p>
+        <p>
+          {{post.description}}
+        </p>
+      </div>
+      <div class="allPosts">
+        <div class="well" ng-repeat="post in posts | orderBy:'-popularity' | filter: searchVal">
+          <div class="post">
+            <img src="{{post.image}}" alt="" class='img-rounded'/>
+            <div class="everythingelse">
+              <h2>{{post.title}}</h2>
               <p>
                 {{post.author}}
               </p>
-            </div>
-            <div class="col-md-2">
               <p>
                 {{post.date}}
               </p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
               <p>
                 {{post.description}}
               </p>
-            </div>
-          </div>
-        </div>
-        <div class="allPosts">
-          <div class="post" ng-repeat="post in posts | orderBy:'-popularity'">
-            <div class="row">
-              <div class="col-md-4">
-                <h2>{{post.title}}</h2>
+              <div class="comments">
+                <p ng-click=toggleComment($index)>
+                  See Comments
+                </p>
+                <p ng-click=toggleAddComment($index)>
+                  Add Comment
+                </p>
               </div>
-              <div class="col-md-4">
+              <div class="popularity">
                 <p ng-click="post.popularity = post.popularity - 1">
                   -
                 </p>
@@ -112,62 +120,39 @@
                   {{post.popularity}}
                 </p>
               </div>
-              <div class="col-md-4">
-                <p>
-                  {{post.author}}
-                </p>
-                <p>
-                  {{post.date}}
-                </p>
-                <p ng-click=toggleComment($index)>
-                  See Comments
-                </p>
-                <p ng-click=toggleAddComment($index)>
-                  Add Comment
-                </p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4">
-                <img src="{{post.image}}" alt="" class='img-rounded'/>
-              </div>
-              <div class="col-md-8">
-                <p>
-                  {{post.description}}
-                </p>
-              </div>
-            </div>
-            <div class="addComment" ng-show='post.showAddComment'>
-              <form name='commentForm' ng-submit='commentForm.$valid && createComment($index)' novalidate>
-                <div class='form-group'>
-                  <label for="commentTitle">Title</label>
-                  <input id='commentTitle' class='form-control' type="text" name="title" ng-model='comment.title' required>
-                </div>
-                <div class='form-group'>
-                  <label for="commentAuthor">Author</label>
-                  <input id='commentAuthor' class="form-control" type="text" name="author" value="" ng-model='comment.author' required>
-                </div>
-                <div class="form-group">
-                  <label for="commentText">Description</label>
-                  <textarea id="commentText" class="form-control" name="text" rows="8" cols="40" ng-model='comment.text' required></textarea>
-                </div>
-                <button type="submit" name="button" class='btn btn-default'>Post</button>
-              </form>
-            </div>
-            <div class="comments" ng-show='post.showComment'>
-              <div ng-repeat= 'comment in post.comments'>
-                <h4>{{comment.title}}</h4>
-                <p>
-                  {{comment.author}}
-                </p>
-                <p>
-                  {{comment.text}}
-                </p>
-              </div>
             </div>
           </div>
-        </div>
+          <div class="comments" ng-show='post.showComment'>
+            <div ng-repeat= 'comment in post.comments'>
+              <h4>{{comment.title}}</h4>
+              <p>
+                {{comment.author}}
+              </p>
+              <p>
+                {{comment.text}}
+              </p>
+            </div>
+          </div>
+          <div class="addComment" ng-show='post.showAddComment'>
+            <form name='commentForm' ng-submit='commentForm.$valid && createComment($index)' novalidate>
+              <div class='form-group'>
+                <label for="commentTitle">Title</label>
+                <input id='commentTitle' class='form-control' type="text" name="title" ng-model='comment.title' required>
+              </div>
+              <div class='form-group'>
+                <label for="commentAuthor">Author</label>
+                <input id='commentAuthor' class="form-control" type="text" name="author" value="" ng-model='comment.author' required>
+              </div>
+              <div class="form-group">
+                <label for="commentText">Description</label>
+                <textarea id="commentText" class="form-control" name="text" rows="8" cols="40" ng-model='comment.text' required></textarea>
+              </div>
+              <button type="submit" name="button" class='btn btn-default'>Post</button>
+            </form>
+          </div>
+      </div>
     </div>
+  </div>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

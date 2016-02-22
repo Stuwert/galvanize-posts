@@ -3,7 +3,7 @@ var app = angular.module('galvanizeeats', []);
 app.controller('RedditController', function($scope){
   $scope.formDisplay = false;
   $scope.toggleForm = function(){
-    $scope.formDisplay = $scope.formDisplay === true ? false : true;
+    $scope.formDisplay = !$scope.formDisplay;
   }
   $scope.post = {};
   $scope.searchVal;
@@ -40,7 +40,8 @@ app.controller('RedditController', function($scope){
     $scope.post.comments = [];
     $scope.posts.push($scope.post);
     $scope.post = {};
-    console.log($scope.posts);
+    $scope.postForm.$setPristine();
+    $scope.toggleForm();
   }
   $scope.colorClass = function(popularity){
     if (popularity > 0){

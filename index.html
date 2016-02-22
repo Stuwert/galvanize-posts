@@ -38,7 +38,18 @@
               <a ng-click='toggleForm()'>Add Post</a>
             </li>
             <li>
-              <a> Filter</a>
+              <div class="dropdown">
+                <button class='btn btn-default dropdown-toggle' type='button' id='dropwdownMenu1' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true'>
+                  Sort By
+                  <span class='caret'></span>
+                </button>
+                <ul class='dropdown-menu' aria-labelledby='dropdownMenu1'>
+                  <li><a ng-click='updateOrder("-name")'>Name</a></li>
+                  <li><a ng-click="updateOrder('+date')">Date</a></li>
+                  <li><a ng-click="updateOrder('-popularity')">Popularity</a></li>
+                </ul>
+
+              </div>
             </li>
             <li>
               <input type="text" ng-model="searchVal" placeholder="Search For Content" name="name" class="form-control">
@@ -87,7 +98,7 @@
         </p>
       </div>
       <div class="allPosts">
-        <div class="well" ng-repeat="post in posts | orderBy:'-popularity' | filter: searchVal">
+        <div class="well" ng-repeat="post in posts | orderBy: ordered | filter: searchVal">
           <div class="post">
             <img src="{{post.image}}" alt="" class='img-rounded'/>
             <div class="everythingelse">

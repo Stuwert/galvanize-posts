@@ -65,3 +65,35 @@ form{
   right: 0;
   top: 0;
 }
+
+.container{
+  animation: fadIn 2s;
+}
+
+@keyframes fadIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.container.ng-move,
+.contiainer.ng-enter,
+.contiainer.ng-leave {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.contiainer.ng-leave.ng-leave-active,
+.contiainer.ng-move,
+.contiainer.ng-enter {
+  opacity:0;
+}
+
+.contiainer.ng-leave,
+.contiainer.ng-move.ng-move-active,
+.contiainer.ng-enter.ng-enter-active {
+  opacity:1;
+}

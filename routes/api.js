@@ -4,7 +4,10 @@ var knex = require('../db/knex')
 
 /* GET home page. */
 router.get('/posts', function(req, res, next) {
-
+  console.log("it's hitting");
+  Posts().select().then(function(posts){
+    res.send(posts)
+  })
 
 });
 

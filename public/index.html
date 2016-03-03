@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app='galvanizeeats'>
+<html lang="en" ng-app='galvanize-posts'>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +34,7 @@
         <div id='navbar' class='navbar-collapse collapse'>
           <ul class='nav navbar-nav'>
             <li>
-              <a ng-click='toggleForm()'>Add Post</a>
+              <a href='/#/posts/new'>Add Post</a>
             </li>
             <li>
               <div class="dropdown">
@@ -58,111 +58,10 @@
       </div>
     </nav>
 
-    <div class='jumbotron'>
-      <form name='postForm' ng-submit='postForm.$valid && addPost()' ng-show='formDisplay' novalidate>
-        <div class='form-group'>
-          <label for="postTitle">Title</label>
-          <input id='postTitle' class='form-control' type="text" name="title" ng-model='post.title' required>
-        </div>
-        <div class='form-group'>
-          <label for="postAuthor">Author</label>
-          <input id='postAuthor' class="form-control" type="text" name="author" value="" ng-model='post.author' required>
-        </div>
-        <div class="form-group">
-          <label for="postDate">Date</label>
-          <input class='form-control' id='postDate' type="date" name="date" value="" ng-model='post.date' required>
-        </div>
-        <div class="form-group">
-          <label for="postImage">Image Link</label>
-          <input id='postImage' class="form-control" type="url" name="image" ng-model='post.image' value="" required>
-        </div>
-        <div class="form-group">
-          <label for="postDescription">Description</label>
-          <textarea id="postDescription" class="form-control" name="description" rows="8" cols="40" ng-model='post.description' required></textarea>
-        </div>
-        <button type="submit" name="button" class='btn btn-default'>Post</button>
-      </form>
+
+    <div class="container" ng-view>
+
     </div>
-    <div class='container'>
-      <div class="post well preview" ng-show="containsValue()">
-        <h2>{{post.title}}</h2>
-        <p>
-          {{post.author}}
-        </p>
-        <p>
-          {{post.date | date: 'shortDate'}}
-        </p>
-        <p>
-          {{post.description}}
-        </p>
-      </div>
-      <div class="allPosts">
-        <div class="well" ng-repeat="post in posts | orderBy: ordered | filter: searchVal">
-          <div class="post">
-            <img src="{{post.image}}" alt="" class='img-rounded'/>
-            <div class="everythingelse">
-              <h2>{{post.title}}</h2>
-              <p>
-                {{post.author}}
-              </p>
-              <p>
-                {{post.date | date: 'shortDate'}}
-              </p>
-              <p>
-                {{post.description}}
-              </p>
-              <div class="comments">
-                <p ng-click=toggleComment($index)>
-                  See Comments
-                </p>
-                <p ng-click=toggleAddComment($index)>
-                  Add Comment
-                </p>
-              </div>
-              <div class="popularity">
-                <p ng-click="post.popularity = post.popularity - 1">
-                  -
-                </p>
-                <p ng-click='post.popularity = post.popularity + 1'>
-                  +
-                </p>
-                <p ng-class=colorClass(post.popularity)>
-                  {{post.popularity}}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="comments" ng-show='post.showComment'>
-            <div ng-repeat= 'comment in post.comments'>
-              <h4>{{comment.title}}</h4>
-              <p>
-                {{comment.author}}
-              </p>
-              <p>
-                {{comment.text}}
-              </p>
-            </div>
-          </div>
-          <div class="addComment" ng-show='post.showAddComment'>
-            <form name='commentForm' ng-submit='commentForm.$valid && createComment($index)' novalidate>
-              <div class='form-group'>
-                <label for="commentTitle">Title</label>
-                <input id='commentTitle' class='form-control' type="text" name="title" ng-model='comment.title' required>
-              </div>
-              <div class='form-group'>
-                <label for="commentAuthor">Author</label>
-                <input id='commentAuthor' class="form-control" type="text" name="author" value="" ng-model='comment.author' required>
-              </div>
-              <div class="form-group">
-                <label for="commentText">Description</label>
-                <textarea id="commentText" class="form-control" name="text" rows="8" cols="40" ng-model='comment.text' required></textarea>
-              </div>
-              <button type="submit" name="button" class='btn btn-default'>Post</button>
-            </form>
-          </div>
-      </div>
-    </div>
-  </div>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -170,6 +69,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js" charset="utf-8"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
     <script src="js/app.js" charset="utf-8"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/controllers.js"></script>

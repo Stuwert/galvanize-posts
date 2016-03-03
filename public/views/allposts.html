@@ -1,5 +1,5 @@
 <div class='container'>
-  <div class="post well preview" ng-show="containsValue()">
+  <div class="post well preview" >
     <h2>{{post.title}}</h2>
     <p>
       {{post.author}}
@@ -47,17 +47,7 @@
           </div>
         </div>
       </div>
-      <div class="comments" ng-show='post.showComment'>
-        <div ng-repeat= 'comment in post.comments'>
-          <h4>{{comment.title}}</h4>
-          <p>
-            {{comment.author}}
-          </p>
-          <p>
-            {{comment.text}}
-          </p>
-        </div>
-      </div>
+      <ng-include src='"views/comment.html"' ng-show='post.showComment'></ng-include>
   </div>
 </div>
 </div>

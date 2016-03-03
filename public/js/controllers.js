@@ -5,7 +5,9 @@ app.controller('RedditController', function($scope){
   }
   $scope.ordered = '-popularity'
   $scope.post = {};
+
   $scope.searchVal;
+  
   $scope.posts = [{
     popularity: 0,
     showComment: false,

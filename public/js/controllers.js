@@ -16,7 +16,9 @@ app.controller('RedditController', ['$scope', 'hitApi', function($scope, hitApi)
 
   $scope.searchVal;
 
-  $scope.posts = hitApi.getAllPosts();
+  hitApi.getAllPosts().then(function(items){
+    $scope.posts = items.data;
+  });
 
   $scope.comment = {};
 

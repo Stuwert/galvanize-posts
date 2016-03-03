@@ -14,7 +14,7 @@
   <div class="allPosts">
     <div class="well" ng-repeat="post in posts | orderBy: ordered | filter: searchVal">
       <div class="post">
-        <img ng-src="{{ post.image ? post.image : null}}" alt="" class='img-rounded'/>
+        <img ng-src="{{ post.image_url ? post.image_url : null}}" alt="" class='img-rounded'/>
         <div class="everythingelse">
           <h2>{{post.title}}</h2>
           <p>
@@ -47,8 +47,8 @@
           </div>
         </div>
       </div>
-      <ng-include src='"views/comment.html"' ng-show='post.showComment'></ng-include>
-      <ng-include src='"view/createcomment.html"' ng-show='post.showAddComment'></ng-include>
+      <ng-include src='"views/createcomment.html"' ng-show='post.showAddComment'></ng-include>
+      <grab-comments post="$index"></grab-comments>
   </div>
 </div>
 </div>
